@@ -44,7 +44,7 @@ while ($tries -lt 50) {
 		Write-Output ''
 		Write-Host '[..] Este proceso puede demorarse aproximadamente 1 minuto...'
 		Write-Output ''
-		$resultado = Get-WinEvent -FilterHashtable @{LogName = 'Security'; ID = 4625} -ComputerName {INGRESE EL HOSTNAME DE SU DC} -MaxEvents 15
+		$resultado = Get-WinEvent -FilterHashtable @{LogName = 'Security'; ID = 4625} -ComputerName {INGRESE EL HOSTNAME DE SU DC} -MaxEvents 15 #--> Puede aumentar el numero máximo de eventos si no tiene problema en esperar :), cuantos más eventos mayor la antiguedad.
 		ForEach($result in $resultado){
 			$time = $result.TimeCreated
 			$result = $result | Select -ExpandProperty Message | Select-String $User		
